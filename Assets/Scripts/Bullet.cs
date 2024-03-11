@@ -7,6 +7,13 @@ public class Bullet : MonoBehaviour
     public float Speed = 20f;
     public float ExistenceTime = 3f;
     float timeSinceCreation = 0f;
+    Rigidbody rb;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        rb.velocity = transform.up * Speed;
+    }
 
     //Forward direction for bullet is transform.up
 
@@ -18,6 +25,6 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        transform.position += transform.up * Speed * Time.deltaTime;
+
     }
 }

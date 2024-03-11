@@ -7,7 +7,8 @@ public class ManualTurret : MonoBehaviour
     public GameObject BulletPrefab;
     public float Sensitivity = 2f;
     Transform gun;
-
+    public float TimeBetweenShots = 0.1f;
+    float shotTimer = 0f;
     //Camera Zoom
     Camera cam;
     public float ZoomFieldOfView = 30f;
@@ -29,9 +30,10 @@ public class ManualTurret : MonoBehaviour
     void Update()
     {
         //Shooting
-        if (Input.GetMouseButtonDown(0))
+        shotTimer += Time.deltaTime;
+        if (Input.GetAxisRaw("Fire1") == 1 && shotTimer > TimeBetweenShots)
         {
-            GameObject bullet = Instantiate(BulletPrefab, gun.position, transform.rotation);
+            Shoot();
         }
 
         //Zoom on Right Click
@@ -59,5 +61,11 @@ public class ManualTurret : MonoBehaviour
         {
             transform.localEulerAngles = new Vector3(20, transform.localEulerAngles.y, transform.localEulerAngles.z);
         }
+    }
+
+    void Shoot()
+    {
+        shotTimer = 0;
+        GameObject bullet = Instantiate(BulletPrefab, gun.position, transform.rotation);
     }
 }
