@@ -16,13 +16,15 @@ public class Enemy : MonoBehaviour
 
 
 
+
+
     public Transform Tower;
     public float Speed = 5f;
 
     // Start is called before the first frame update
     void Start()
     {
-        mat = GetComponent<Renderer>().material;
+        mat = GetComponent<MeshRenderer>().material;
         hitTimer = HitDuration;
     }
 
