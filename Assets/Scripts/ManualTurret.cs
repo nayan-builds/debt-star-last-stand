@@ -9,12 +9,16 @@ public class ManualTurret : MonoBehaviour
     Transform gun;
     public float TimeBetweenShots = 0.1f;
     float shotTimer = 0f;
+
     //Camera Zoom
     Camera cam;
     public float ZoomFieldOfView = 30f;
     float normalFieldOfView;
     public float TimeToZoom = 0.25f;
     float zoomTimer = 0f;
+
+    //Audio
+    public AudioClip ShootSound;
 
     // Start is called before the first frame update
     void Start()
@@ -66,6 +70,7 @@ public class ManualTurret : MonoBehaviour
     void Shoot()
     {
         shotTimer = 0;
-        GameObject bullet = Instantiate(BulletPrefab, gun.position, transform.rotation);
+        Instantiate(BulletPrefab, gun.position, transform.rotation);
+        AudioSource.PlayClipAtPoint(ShootSound, gun.position);
     }
 }
