@@ -7,12 +7,16 @@ public class Enemy : MonoBehaviour
     //Health
     public float MAX_HEALTH = 100f;
     float health;
+    EnemyHealthBar healthBar;
 
     //Hit Color Change
     public Color HitColor = Color.red;
     public float HitDuration = 0.5f;
     float hitTimer;
     Material mat;
+
+    //Audio
+    public List<AudioClip> DeathSounds;
 
 
 
@@ -24,7 +28,9 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        health = MAX_HEALTH;
         mat = GetComponent<MeshRenderer>().material;
+        healthBar = GetComponentInChildren<EnemyHealthBar>();
         hitTimer = HitDuration;
     }
 
@@ -42,7 +48,20 @@ public class Enemy : MonoBehaviour
     {
         if (co.gameObject.tag == "Projectile")
         {
+            health -= co.gameObject.GetComponent<Bullet>().Damage;
+            healthBar.SetHealth(health / MAX_HEALTH);
+            if (health <= 0)
+            {
+                Die();
+            }
             hitTimer = 0f;
         }
+    }
+
+    void Die()
+    {
+        AudioClip DeathSound = DeathSounds[Random.Range(0, DeathSounds.Count)];
+        AudioSource.PlayClipAtPoint(DeathSound, transform.position);
+        Destroy(gameObject);
     }
 }

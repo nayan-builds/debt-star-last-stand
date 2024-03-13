@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public float Damage;
     public float Speed = 20f;
     public float ExistenceTime = 3f;
     float timeSinceCreation = 0f;
