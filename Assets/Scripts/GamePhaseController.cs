@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class GamePhaseController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    void StartNextWave()
     {
-        
+        //Spawn enemies
+        //Start Battle Music
+
     }
 
-    // Update is called once per frame
-    void Update()
+    void EndWave()
     {
-        
+        //Stop Battle Music
+        //Play Victory Sound
+        StartBuildPhase();
+    }
+
+    void StartBuildPhase()
+    {
+        //Allow player to build
+        //Start Build Phase Music
     }
 }
