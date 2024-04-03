@@ -26,8 +26,6 @@ public class ManualTurret : MonoBehaviour
         gun = transform.GetChild(0);
         cam = GetComponentInChildren<Camera>();
         normalFieldOfView = cam.fieldOfView;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = true;
     }
 
     // Update is called once per frame
