@@ -5,6 +5,7 @@ using UnityEngine;
 public class ManualTurret : MonoBehaviour
 {
     public GameObject BulletPrefab;
+    public float BulletDamage = 10f;
     public float Sensitivity = 2f;
     Transform gun;
     public float TimeBetweenShots = 0.1f;
@@ -68,7 +69,8 @@ public class ManualTurret : MonoBehaviour
     void Shoot()
     {
         shotTimer = 0;
-        Instantiate(BulletPrefab, gun.position, transform.rotation);
+        GameObject bullet = Instantiate(BulletPrefab, gun.position, transform.rotation);
+        bullet.GetComponent<Bullet>().Damage = BulletDamage;
         AudioSource.PlayClipAtPoint(ShootSound, gun.position);
     }
 }

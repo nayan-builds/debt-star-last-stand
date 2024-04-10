@@ -13,6 +13,7 @@ public class GamePhaseController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         StartBuildPhase();
+        StartNextWave();
     }
 
     void StartNextWave()

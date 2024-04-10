@@ -10,7 +10,7 @@ public class MusicController : MonoBehaviour
 
     AudioSource audioSource;
 
-    void Start()
+    void Awake()
     {
         audioSource = GetComponent<AudioSource>();
     }
@@ -23,6 +23,7 @@ public class MusicController : MonoBehaviour
 
     public void StartBuildMusic()
     {
+        Debug.Log(audioSource);
         audioSource.clip = BuildPhaseMusic;
         audioSource.Play();
     }

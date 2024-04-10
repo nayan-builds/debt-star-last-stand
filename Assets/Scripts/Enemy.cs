@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Enemy : MonoBehaviour
 {
@@ -17,13 +17,15 @@ public class Enemy : MonoBehaviour
 
     //Audio
     public List<AudioClip> DeathSounds;
+    public AudioMixerSnapshot MovingUp, MovingDown;
+    public float SnapshotTransitionTime = 0.1f;
 
+    //Hover Movement
+    public float HoverAmplitude = 1f;
+    float sineOffset;
 
-
-
-
-    public Transform Tower;
-    public float Speed = 5f;
+    //Target
+    Transform target;
 
     // Start is called before the first frame update
     void Start()
@@ -32,16 +34,32 @@ public class Enemy : MonoBehaviour
         mat = GetComponent<MeshRenderer>().material;
         healthBar = GetComponentInChildren<EnemyHealthBar>();
         hitTimer = HitDuration;
+        sineOffset = Random.Range(0, 2 * Mathf.PI);
+        target = GameObject.Find("Enemy Target Point").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
+        transform.LookAt(target);
         if (hitTimer < HitDuration)
         {
             hitTimer += Time.deltaTime;
             mat.color = Color.Lerp(HitColor, Color.white, hitTimer / HitDuration);
         }
+
+        //Hover
+        float y = transform.position.y + HoverAmplitude * Mathf.Sin(sineOffset + Time.time) * Time.deltaTime;
+        if (Mathf.Cos(sineOffset + Time.time) > 0)
+        {
+            MovingUp.TransitionTo(SnapshotTransitionTime);
+        }
+        else
+        {
+            MovingDown.TransitionTo(SnapshotTransitionTime);
+        }
+        transform.position = new Vector3(transform.position.x, y, transform.position.z);
+
     }
 
     void OnTriggerEnter(Collider co)
