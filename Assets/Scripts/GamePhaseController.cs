@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GamePhaseController : MonoBehaviour
@@ -9,6 +10,10 @@ public class GamePhaseController : MonoBehaviour
     public GameObject BuildCamera;
     public MusicController MusicController;
     public GameObject BuildPhaseUI;
+    public TextMeshProUGUI WaveText;
+    public TextMeshProUGUI EnemiesRemainingText;
+    int wave = 0;
+    int enemiesRemaining = 0;
 
     void Start()
     {

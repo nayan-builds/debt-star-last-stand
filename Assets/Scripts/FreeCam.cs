@@ -14,14 +14,14 @@ public class FreeCam : MonoBehaviour
 
     bool cursorLocked = true;
 
+
+
     void Update()
     {
-
-        //Rotation w/ clamping from 
-        //https://forum.unity.com/threads/solved-how-to-clamp-camera-rotation-on-the-x-axis-fps-controller.526871/
-
         if (cursorLocked)
         {
+            //Rotation w/ clamping from 
+            //https://forum.unity.com/threads/solved-how-to-clamp-camera-rotation-on-the-x-axis-fps-controller.526871/
             xRotation += Input.GetAxis("Mouse X") * Sensitivity;
             yRotation += Input.GetAxis("Mouse Y") * Sensitivity;
 
