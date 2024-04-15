@@ -6,21 +6,25 @@ public class BlockFaceClickArea : MonoBehaviour
 {
     public GameObject Block;
     public GameObject Turret;
+    GamePhaseController controller;
 
-    void OnMouseOver()
+    void Start()
     {
-        //Right Click
-        if (Input.GetMouseButtonDown(1))
-        {
-            Instantiate(Turret, transform.position, transform.rotation);
-            Destroy(gameObject);
-        }
+        controller = GameObject.Find("Controller").GetComponent<GamePhaseController>();
     }
 
     //Left Click
     void OnMouseDown()
     {
-        Instantiate(Block, transform.position + transform.up * 1.5f, Quaternion.identity);
+        switch (controller.SelectedBuildable)
+        {
+            case Buildable.Block:
+                Instantiate(Block, transform.position + transform.up * 1.5f, Quaternion.identity);
+                break;
+            case Buildable.Turret:
+                Instantiate(Turret, transform.position, transform.rotation);
+                break;
+        }
         Destroy(gameObject);
     }
 }

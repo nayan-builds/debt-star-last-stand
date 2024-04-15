@@ -27,6 +27,9 @@ public class Enemy : MonoBehaviour
     //Target
     Transform target;
 
+    //Controller
+    GamePhaseController controller;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +39,7 @@ public class Enemy : MonoBehaviour
         hitTimer = HitDuration;
         sineOffset = Random.Range(0, 2 * Mathf.PI);
         target = GameObject.Find("Enemy Target Point").transform;
+        controller = GameObject.Find("Controller").GetComponent<GamePhaseController>();
     }
 
     // Update is called once per frame
@@ -80,6 +84,7 @@ public class Enemy : MonoBehaviour
     {
         AudioClip DeathSound = DeathSounds[Random.Range(0, DeathSounds.Count)];
         AudioSource.PlayClipAtPoint(DeathSound, transform.position);
+        controller.DecrementEnemiesRemaining();
         Destroy(gameObject);
     }
 }

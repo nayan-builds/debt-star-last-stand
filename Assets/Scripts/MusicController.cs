@@ -7,8 +7,11 @@ public class MusicController : MonoBehaviour
 {
     public AudioClip BuildPhaseMusic;
     public AudioClip CombatPhaseMusic;
+    public AudioClip VictoryMusic;
 
     AudioSource audioSource;
+
+    public float VictoryMusicLength { get { return VictoryMusic.length; } }
 
     void Awake()
     {
@@ -17,14 +20,27 @@ public class MusicController : MonoBehaviour
 
     public void StartCombatMusic()
     {
+        audioSource.loop = true;
         audioSource.clip = CombatPhaseMusic;
         audioSource.Play();
     }
 
     public void StartBuildMusic()
     {
-        Debug.Log(audioSource);
+        audioSource.loop = true;
         audioSource.clip = BuildPhaseMusic;
+        audioSource.Play();
+    }
+
+    public void StopMusic()
+    {
+        audioSource.Stop();
+    }
+
+    public void PlayVictoryMusic()
+    {
+        audioSource.loop = false;
+        audioSource.clip = VictoryMusic;
         audioSource.Play();
     }
 }
