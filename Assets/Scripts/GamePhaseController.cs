@@ -10,6 +10,7 @@ public class GamePhaseController : MonoBehaviour
     public GameObject BuildCamera;
     public MusicController MusicController;
     public GameObject BuildPhaseUI;
+    public GameObject CombatPhaseUI;
     public TextMeshProUGUI WaveText;
     public TextMeshProUGUI EnemiesRemainingText;
     public TextMeshProUGUI MoneyText;
@@ -33,6 +34,7 @@ public class GamePhaseController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         BuildPhaseUI.SetActive(false);
+        CombatPhaseUI.SetActive(true);
         manualTurretScript.enabled = true;
         CombatCamera.SetActive(true);
         BuildCamera.SetActive(false);
@@ -79,6 +81,7 @@ public class GamePhaseController : MonoBehaviour
         //Start Build Phase Music
         Cursor.lockState = CursorLockMode.Locked;
         BuildPhaseUI.SetActive(true);
+        CombatPhaseUI.SetActive(false);
         manualTurretScript.enabled = false;
         CombatCamera.SetActive(false);
         BuildCamera.SetActive(true);
