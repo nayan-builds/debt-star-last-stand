@@ -4,27 +4,17 @@ using UnityEngine;
 
 public class BlockFaceClickArea : MonoBehaviour
 {
-    public GameObject Block;
-    public GameObject Turret;
-    GamePhaseController controller;
+    ShopController shop;
 
     void Start()
     {
-        controller = GameObject.Find("Controller").GetComponent<GamePhaseController>();
+        shop = GameObject.Find("Controller").GetComponent<ShopController>();
     }
 
     //Left Click
     void OnMouseDown()
     {
-        switch (controller.SelectedBuildable)
-        {
-            case Buildable.Block:
-                Instantiate(Block, transform.position + transform.up * 1.5f, Quaternion.identity);
-                break;
-            case Buildable.Turret:
-                Instantiate(Turret, transform.position, transform.rotation);
-                break;
-        }
-        Destroy(gameObject);
+        if (shop.Build(transform.position, transform.up, transform.rotation))
+            Destroy(gameObject);
     }
 }

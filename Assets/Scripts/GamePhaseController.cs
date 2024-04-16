@@ -5,28 +5,25 @@ using UnityEngine;
 
 public class GamePhaseController : MonoBehaviour
 {
-    public GameObject CombatCamera;
-    public ManualTurret manualTurretScript;
-    public GameObject BuildCamera;
     public MusicController MusicController;
+    public ShopController Shop;
+    public GameObject CombatCamera;
+    public ManualTurret ManualTurretScript;
+    public GameObject BuildCamera;
     public GameObject BuildPhaseUI;
     public GameObject CombatPhaseUI;
     public TextMeshProUGUI WaveText;
     public TextMeshProUGUI EnemiesRemainingText;
-    public TextMeshProUGUI MoneyText;
     int wave = 0;
     public int EnemiesRemaining = 0;
-    int money = 0;
     int enemiesToSpawn = 0;
 
     public List<EnemySpawn> EnemySpawnPoints = new List<EnemySpawn>();
 
-    public Buildable SelectedBuildable = Buildable.Block;
-
-
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        MusicController = GameObject.Find("Music Controller").GetComponent<MusicController>();
         StartBuildPhase();
     }
 
@@ -35,7 +32,7 @@ public class GamePhaseController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         BuildPhaseUI.SetActive(false);
         CombatPhaseUI.SetActive(true);
-        manualTurretScript.enabled = true;
+        ManualTurretScript.enabled = true;
         CombatCamera.SetActive(true);
         BuildCamera.SetActive(false);
         MusicController.StartCombatMusic();
@@ -82,7 +79,7 @@ public class GamePhaseController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         BuildPhaseUI.SetActive(true);
         CombatPhaseUI.SetActive(false);
-        manualTurretScript.enabled = false;
+        ManualTurretScript.enabled = false;
         CombatCamera.SetActive(false);
         BuildCamera.SetActive(true);
         MusicController.StartBuildMusic();
@@ -111,11 +108,6 @@ public class GamePhaseController : MonoBehaviour
         EnemiesRemainingText.text = "Enemies Remaining: " + enemiesRemaining;
     }
 
-    public void SetMoneyText(int money)
-    {
-        MoneyText.text = "$" + money;
-    }
-
     public void SetEnemiesInWave(int wave)
     {
         EnemiesRemaining = 10 + wave * wave * 2;
@@ -125,25 +117,12 @@ public class GamePhaseController : MonoBehaviour
 
     public void AddMoneyForWave(int wave)
     {
-        money = 100 + wave * wave * 50;
-        SetMoneyText(money);
+        //5% interest
+        Shop.Money = Mathf.CeilToInt(100 + wave * wave * 50 + Shop.Money * 0.05f);
+        Shop.UpdateMoneyText();
     }
 
-    public void SetSelectedBuildable(string buildable)
-    {
-        if (buildable == "Block")
-        {
-            SelectedBuildable = Buildable.Block;
-        }
-        else if (buildable == "Turret")
-        {
-            SelectedBuildable = Buildable.Turret;
-        }
-    }
+
 }
 
-public enum Buildable
-{
-    Block,
-    Turret
-}
+

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MusicController : MonoBehaviour
@@ -16,6 +17,8 @@ public class MusicController : MonoBehaviour
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        DontDestroyOnLoad(gameObject);
+        StartBuildMusic();
     }
 
     public void StartCombatMusic()
@@ -28,8 +31,12 @@ public class MusicController : MonoBehaviour
     public void StartBuildMusic()
     {
         audioSource.loop = true;
-        audioSource.clip = BuildPhaseMusic;
-        audioSource.Play();
+        if (audioSource.clip != BuildPhaseMusic)
+        {
+            audioSource.clip = BuildPhaseMusic;
+            audioSource.Play();
+
+        }
     }
 
     public void StopMusic()
