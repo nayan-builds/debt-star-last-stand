@@ -609,3 +609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a018449aa88f374991e31bff838ad64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BulletPrefab: {fileID: 8403267709375055554, guid: 5005ca573fb33d64a8816ebae437653f, type: 3}
+  BulletDamage: 3
+  TimeBetweenShots: 2
+  ShootSound: {fileID: 8300000, guid: 79eaa3e764e383842865820854f60820, type: 3}

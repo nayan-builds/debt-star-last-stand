@@ -27,13 +27,16 @@ public class ShopController : MonoBehaviour
     {
         //Returns true if build was successful
         //Returns false if build was unsuccessful
+        Vector3 middle = position + up * 1.5f;
         switch (SelectedBuildable)
         {
             case Buildable.Block:
                 if (Money >= Prices.Block)
                 {
                     Money -= Prices.Block;
-                    Instantiate(BuildablePrefabs.Block, position + up * 1.5f, Quaternion.identity);
+                    UpdateMoneyText();
+                    FireRaycasts(middle);
+                    Instantiate(BuildablePrefabs.Block, middle, Quaternion.identity);
                     return true;
                 }
                 break;
@@ -41,6 +44,8 @@ public class ShopController : MonoBehaviour
                 if (Money >= Prices.Turret)
                 {
                     Money -= Prices.Turret;
+                    UpdateMoneyText();
+                    FireRaycasts(middle);
                     Instantiate(BuildablePrefabs.Turret, position, rotation);
                     return true;
                 }
@@ -52,6 +57,23 @@ public class ShopController : MonoBehaviour
     public void UpdateMoneyText()
     {
         MoneyText.text = "$" + Money;
+    }
+
+    void FireRaycasts(Vector3 middle)
+    {
+        //Removes block faces that should no longer exist
+        Vector3[] directions = { Vector3.forward, Vector3.back, Vector3.left, Vector3.right, Vector3.up, Vector3.down };
+        foreach (Vector3 direction in directions)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(middle, direction, out hit, 1.5f))
+            {
+                if (hit.transform.tag == "BlockFace")
+                {
+                    Destroy(hit.transform.gameObject);
+                }
+            }
+        }
     }
 }
 

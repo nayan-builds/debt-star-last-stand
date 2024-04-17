@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -17,13 +18,20 @@ public class GamePhaseController : MonoBehaviour
     int wave = 0;
     public int EnemiesRemaining = 0;
     int enemiesToSpawn = 0;
-
     public List<EnemySpawn> EnemySpawnPoints = new List<EnemySpawn>();
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        MusicController = GameObject.Find("Music Controller").GetComponent<MusicController>();
+        try
+        {
+            MusicController = GameObject.Find("Music Controller").GetComponent<MusicController>();
+        }
+        catch (NullReferenceException)
+        {
+            //This is just so you can run the game from the Game scene
+            MusicController = Instantiate(Resources.Load<GameObject>("Music Controller")).GetComponent<MusicController>();
+        }
         StartBuildPhase();
     }
 
@@ -36,7 +44,6 @@ public class GamePhaseController : MonoBehaviour
         CombatCamera.SetActive(true);
         BuildCamera.SetActive(false);
         MusicController.StartCombatMusic();
-        Globals.Phase = GamePhase.Combat;
 
         wave++;
         SetEnemiesInWave(wave);
@@ -47,8 +54,8 @@ public class GamePhaseController : MonoBehaviour
 
     IEnumerator SpawnEnemy()
     {
-        yield return new WaitForSeconds(Random.Range(1, 3));
-        EnemySpawnPoints[Random.Range(0, EnemySpawnPoints.Count)].SpawnEnemy();
+        yield return new WaitForSeconds(UnityEngine.Random.Range(1, 3));
+        EnemySpawnPoints[UnityEngine.Random.Range(0, EnemySpawnPoints.Count)].SpawnEnemy();
         enemiesToSpawn--;
         if (enemiesToSpawn > 0)
         {
@@ -83,7 +90,6 @@ public class GamePhaseController : MonoBehaviour
         CombatCamera.SetActive(false);
         BuildCamera.SetActive(true);
         MusicController.StartBuildMusic();
-        Globals.Phase = GamePhase.Build;
 
         AddMoneyForWave(wave);
     }

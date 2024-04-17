@@ -34,7 +34,8 @@ public class FreeCam : MonoBehaviour
         float strafe = Input.GetAxis("Horizontal");
         float up = Input.GetAxis("Jump");
         Vector3 movement = transform.forward * forward + transform.right * strafe;
-        movement = movement.normalized;
+        if (movement.magnitude > 1f)
+            movement = movement.normalized;
 
         transform.position += movement * Time.deltaTime * Speed;
         transform.position += transform.up * up * Time.deltaTime * UpSpeed;
