@@ -3613,12 +3613,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 8407986553274065456, guid: e80f07808c48fac44be779ef482750a6, type: 3}
-  BulletDamage: 10
-  Sensitivity: 2
+  BulletDamage: 20
   TimeBetweenShots: 0.3
+  ShootSound: {fileID: 8300000, guid: 79eaa3e764e383842865820854f60820, type: 3}
+  Sensitivity: 2
   ZoomFieldOfView: 30
   TimeToZoom: 0.1
-  ShootSound: {fileID: 8300000, guid: 79eaa3e764e383842865820854f60820, type: 3}
 --- !u!4 &1522357403 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4790734784240517461, guid: 9743e64862fca8e4e811792d38d19bc4, type: 3}

@@ -58,7 +58,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.5, y: 2.5, z: 2.5}
+  m_Size: {x: 1.5, y: 1.5, z: 1.5}
   m_Center: {x: 0, y: 1.25, z: 0}
 --- !u!1 &1371972040671753968
 GameObject:
@@ -71,7 +71,9 @@ GameObject:
   - component: {fileID: 1223981706504503172}
   - component: {fileID: 5279485265527940686}
   - component: {fileID: 8870851896326058740}
-  m_Layer: 0
+  - component: {fileID: 8867049557106488101}
+  - component: {fileID: 7106863953445122893}
+  m_Layer: 2
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,6 +146,44 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &8867049557106488101
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371972040671753968}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7106863953445122893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371972040671753968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cef8182d7ed3ea74096f6938062addbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletPrefab: {fileID: 8407986553274065456, guid: e80f07808c48fac44be779ef482750a6, type: 3}
+  BulletDamage: 10
+  TimeBetweenShots: 1
+  ShootSound: {fileID: 8300000, guid: 79eaa3e764e383842865820854f60820, type: 3}
+  range: 50
 --- !u!1 &1777891688262493192
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,7 +444,7 @@ GameObject:
   - component: {fileID: 2243600234494301508}
   - component: {fileID: 8931999058981438241}
   - component: {fileID: 1002468590291841299}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}

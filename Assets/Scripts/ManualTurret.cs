@@ -2,14 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ManualTurret : MonoBehaviour
+public class ManualTurret : Shooting
 {
-    public GameObject BulletPrefab;
-    public float BulletDamage = 10f;
     public float Sensitivity = 2f;
     Transform gun;
-    public float TimeBetweenShots = 0.1f;
-    float shotTimer = 0f;
 
     //Camera Zoom
     Camera cam;
@@ -18,8 +14,6 @@ public class ManualTurret : MonoBehaviour
     public float TimeToZoom = 0.25f;
     float zoomTimer = 0f;
 
-    //Audio
-    public AudioClip ShootSound;
 
     // Start is called before the first frame update
     void Start()

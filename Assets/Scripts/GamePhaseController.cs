@@ -31,6 +31,7 @@ public class GamePhaseController : MonoBehaviour
         {
             //This is just so you can run the game from the Game scene
             MusicController = Instantiate(Resources.Load<GameObject>("Music Controller")).GetComponent<MusicController>();
+            MusicController.name = "Music Controller";
         }
         StartBuildPhase();
     }

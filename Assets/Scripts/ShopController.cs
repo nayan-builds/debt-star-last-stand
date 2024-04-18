@@ -68,7 +68,7 @@ public class ShopController : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(middle, direction, out hit, 1.5f))
             {
-                if (hit.transform.tag == "BlockFace")
+                if (hit.transform.CompareTag("BlockFace"))
                 {
                     Destroy(hit.transform.gameObject);
                 }

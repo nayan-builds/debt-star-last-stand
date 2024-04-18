@@ -68,7 +68,7 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter(Collider co)
     {
-        if (co.gameObject.tag == "Projectile")
+        if (co.CompareTag("Projectile"))
         {
             health -= co.gameObject.GetComponent<Bullet>().Damage;
             healthBar.SetHealth(health / MAX_HEALTH);

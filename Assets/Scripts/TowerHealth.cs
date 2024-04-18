@@ -26,7 +26,7 @@ public class TowerHealth : MonoBehaviour
 
     void OnTriggerEnter(Collider co)
     {
-        if (co.tag == "EnemyProjectile")
+        if (co.CompareTag("EnemyProjectile"))
         {
             health -= co.GetComponent<Bullet>().Damage;
             healthBar.value = health;

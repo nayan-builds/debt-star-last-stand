@@ -2,14 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyShooting : MonoBehaviour
+public class EnemyShooting : Shooting
 {
-    public GameObject BulletPrefab;
-    public float BulletDamage = 3f;
-    public float TimeBetweenShots = 0.1f;
-    float shotTimer = 0f;
-    public AudioClip ShootSound;
-
 
     // Update is called once per frame
     void Update()
