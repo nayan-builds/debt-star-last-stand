@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Base class for anything shooting
-public class Shooting : MonoBehaviour
+public abstract class Shooting : MonoBehaviour
 {
     public GameObject BulletPrefab;
     public float BulletDamage = 10f;
