@@ -15,7 +15,7 @@ public class MoveTowardsTower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += Vector3.MoveTowards(transform.position, Tower.position, Speed * Time.deltaTime) - transform.position;
+        transform.position = Vector3.MoveTowards(transform.position, Tower.position, Speed * Time.deltaTime);
     }
 
     void OnTriggerEnter(Collider co)
