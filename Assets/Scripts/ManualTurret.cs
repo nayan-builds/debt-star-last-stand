@@ -54,6 +54,7 @@ public class ManualTurret : Shooting
         transform.Rotate(Vector3.left, mouseY, Space.Self);
 
         //Clamp the rotation so the turret can't look too far up or down
+        //This is different than free cam since it is rotated due to the parent object
         if (transform.localEulerAngles.x < 20)
         {
             transform.localEulerAngles = new Vector3(20, transform.localEulerAngles.y, transform.localEulerAngles.z);
