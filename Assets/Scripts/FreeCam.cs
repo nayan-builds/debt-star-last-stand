@@ -13,9 +13,12 @@ public class FreeCam : MonoBehaviour
     float yRotation = 0f;
 
     bool cursorLocked = true;
+    Rigidbody rb;
 
-
-
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
     void Update()
     {
         if (cursorLocked)
@@ -37,8 +40,7 @@ public class FreeCam : MonoBehaviour
         if (movement.magnitude > 1f)
             movement = movement.normalized;
 
-        transform.position += movement * Time.deltaTime * Speed;
-        transform.position += transform.up * up * Time.deltaTime * UpSpeed;
+        rb.velocity = movement * Speed + transform.up * up * UpSpeed;
 
         if (Input.GetKeyDown(KeyCode.E))
         {
