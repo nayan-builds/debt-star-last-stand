@@ -23,6 +23,7 @@ public class GamePhaseController : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+#if UNITY_EDITOR
         try
         {
             MusicController = GameObject.Find("Music Controller").GetComponent<MusicController>();
@@ -33,6 +34,9 @@ public class GamePhaseController : MonoBehaviour
             MusicController = Instantiate(Resources.Load<GameObject>("Music Controller")).GetComponent<MusicController>();
             MusicController.name = "Music Controller";
         }
+#else
+        MusicController = GameObject.Find("Music Controller").GetComponent<MusicController>();
+#endif
         StartBuildPhase();
     }
 
