@@ -13,6 +13,7 @@ public class ShopController : MonoBehaviour
 
     public void SetSelectedBuildable(string buildable)
     {
+        //OnClick handlers don't like enums
         if (buildable == "Block")
         {
             SelectedBuildable = Buildable.Block;
