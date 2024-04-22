@@ -30,7 +30,7 @@ public class ManualTurret : Shooting
         shotTimer += Time.deltaTime;
         if (Input.GetAxisRaw("Fire1") == 1 && shotTimer > TimeBetweenShots)
         {
-            Shoot();
+            Shoot(gun.position, transform.rotation);
         }
 
         //Zoom on Right Click
@@ -59,13 +59,5 @@ public class ManualTurret : Shooting
         {
             transform.localEulerAngles = new Vector3(20, transform.localEulerAngles.y, transform.localEulerAngles.z);
         }
-    }
-
-    void Shoot()
-    {
-        shotTimer = 0;
-        GameObject bullet = Instantiate(BulletPrefab, gun.position, transform.rotation);
-        bullet.GetComponent<Bullet>().Damage = BulletDamage;
-        AudioSource.PlayClipAtPoint(ShootSound, gun.position);
     }
 }

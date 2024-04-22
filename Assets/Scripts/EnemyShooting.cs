@@ -18,10 +18,7 @@ public class EnemyShooting : Shooting
 
     void Shoot()
     {
-        shotTimer = 0;
         Quaternion rot = Quaternion.LookRotation(-transform.up, transform.forward);
-        GameObject bullet = Instantiate(BulletPrefab, transform.position, rot);
-        bullet.GetComponent<Bullet>().Damage = BulletDamage;
-        AudioSource.PlayClipAtPoint(ShootSound, transform.position);
+        Shoot(transform.position, rot);
     }
 }

@@ -38,11 +38,8 @@ public class Turret : Shooting
 
     void Shoot()
     {
-        shotTimer = 0;
         Quaternion rot = Quaternion.LookRotation(-transform.up, transform.forward);
-        GameObject bullet = Instantiate(BulletPrefab, gun.position, rot);
-        bullet.GetComponent<Bullet>().Damage = BulletDamage;
-        AudioSource.PlayClipAtPoint(ShootSound, gun.position);
+        Shoot(gun.position, rot);
     }
 
     void OnTriggerEnter(Collider co)

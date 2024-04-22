@@ -10,4 +10,12 @@ public abstract class Shooting : MonoBehaviour
     public float TimeBetweenShots = 2f;
     protected float shotTimer = 0f;
     public AudioClip ShootSound;
+
+    public void Shoot(Vector3 position, Quaternion rotation)
+    {
+        shotTimer = 0;
+        GameObject bullet = Instantiate(BulletPrefab, position, rotation);
+        bullet.GetComponent<Bullet>().Damage = BulletDamage;
+        AudioSource.PlayClipAtPoint(ShootSound, position);
+    }
 }
