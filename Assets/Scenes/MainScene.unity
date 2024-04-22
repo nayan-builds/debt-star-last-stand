@@ -263,11 +263,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MAX_HEALTH: 100
-  healthBarGradient:
+  HealthBarGradient:
     serializedVersion: 2
-    key0: {r: 0.90943396, g: 0, b: 0.14010686, a: 1}
-    key1: {r: 0.9893845, g: 1, b: 0.081131995, a: 1}
-    key2: {r: 0.27982792, g: 1, b: 0.082352936, a: 0}
+    key0: {r: 0.93962264, g: 0, b: 0, a: 1}
+    key1: {r: 0.95579195, g: 0.96981126, b: 0.17383398, a: 1}
+    key2: {r: 0.30337808, g: 0.96862745, b: 0.17254902, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
@@ -293,7 +293,7 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
-  healthBar: {fileID: 23796800}
+  HealthBar: {fileID: 23796800}
   GameOverScreen: {fileID: 1845256059}
 --- !u!135 &134574256
 SphereCollider:
