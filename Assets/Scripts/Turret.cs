@@ -59,8 +59,5 @@ public class Turret : Shooting
         {
             enemiesInRange.Remove(co.transform);
         }
-        {
-            enemiesInRange.Remove(co.transform);
-        }
     }
 }
