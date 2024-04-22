@@ -9,7 +9,7 @@ public class BlockFace : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!Physics.Raycast(transform.position - transform.up * 0.01f, transform.up, out RaycastHit hit, 3))
+        if (!Physics.Raycast(transform.position - transform.up * 0.01f, transform.up, out RaycastHit hit, 2.5f))
         {
             Instantiate(BlockFaceObject, transform.position, transform.rotation, transform);
         }
