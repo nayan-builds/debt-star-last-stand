@@ -8,8 +8,8 @@ public class TowerHealth : MonoBehaviour
     //Health
     public float MAX_HEALTH = 100f;
     float health;
-    public Gradient healthBarGradient;
-    public Slider healthBar;
+    public Gradient HealthBarGradient;
+    public Slider HealthBar;
     Image healthBarFill;
     public GameObject GameOverScreen;
 
@@ -17,11 +17,11 @@ public class TowerHealth : MonoBehaviour
     void Start()
     {
         health = MAX_HEALTH;
-        healthBar.minValue = 0;
-        healthBar.maxValue = MAX_HEALTH;
-        healthBarFill = healthBar.fillRect.GetComponent<Image>();
-        healthBar.value = health;
-        healthBarFill.color = healthBarGradient.Evaluate(1);
+        HealthBar.minValue = 0;
+        HealthBar.maxValue = MAX_HEALTH;
+        healthBarFill = HealthBar.fillRect.GetComponent<Image>();
+        HealthBar.value = health;
+        healthBarFill.color = HealthBarGradient.Evaluate(1);
     }
 
     void OnTriggerEnter(Collider co)
@@ -29,8 +29,8 @@ public class TowerHealth : MonoBehaviour
         if (co.CompareTag("EnemyProjectile"))
         {
             health -= co.GetComponent<Bullet>().Damage;
-            healthBar.value = health;
-            healthBarFill.color = healthBarGradient.Evaluate(health / MAX_HEALTH);
+            HealthBar.value = health;
+            healthBarFill.color = HealthBarGradient.Evaluate(health / MAX_HEALTH);
             if (health <= 0)
             {
                 //Game Over
