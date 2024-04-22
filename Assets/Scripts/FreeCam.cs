@@ -18,6 +18,7 @@ public class FreeCam : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        xRotation = transform.rotation.eulerAngles.y;
     }
     void Update()
     {
