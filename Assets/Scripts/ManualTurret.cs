@@ -13,6 +13,8 @@ public class ManualTurret : Shooting
     float normalFieldOfView;
     public float TimeToZoom = 0.25f;
     float zoomTimer = 0f;
+    float xRotation = 0f;
+    float yRotation = -90f;
 
 
     // Start is called before the first frame update
@@ -21,6 +23,8 @@ public class ManualTurret : Shooting
         gun = transform.GetChild(0);
         cam = GetComponentInChildren<Camera>();
         normalFieldOfView = cam.fieldOfView;
+        Debug.Log(transform.rotation.eulerAngles.x);
+        Debug.Log(transform.rotation.eulerAngles.y);
     }
 
     // Update is called once per frame
@@ -47,17 +51,12 @@ public class ManualTurret : Shooting
             cam.fieldOfView = Mathf.Lerp(normalFieldOfView, ZoomFieldOfView, zoomTimer / TimeToZoom);
         }
 
+        //Rotation w/ clamping from 
+        //https://forum.unity.com/threads/solved-how-to-clamp-camera-rotation-on-the-x-axis-fps-controller.526871/
+        xRotation += Input.GetAxis("Mouse X") * Sensitivity;
+        yRotation += Input.GetAxis("Mouse Y") * Sensitivity;
 
-        float mouseX = Input.GetAxis("Mouse X") * Sensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * Sensitivity;
-        transform.Rotate(Vector3.up, mouseX, Space.World);
-        transform.Rotate(Vector3.left, mouseY, Space.Self);
-
-        //Clamp the rotation so the turret can't look too far up or down
-        //This is different than free cam since it is rotated due to the parent object
-        if (transform.localEulerAngles.x < 20)
-        {
-            transform.localEulerAngles = new Vector3(20, transform.localEulerAngles.y, transform.localEulerAngles.z);
-        }
+        yRotation = Mathf.Clamp(yRotation, -160f, -20f);
+        transform.rotation = Quaternion.Euler(-yRotation, xRotation, 0f);
     }
 }
