@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class ShopController : MonoBehaviour
 {
-    public Buildable SelectedBuildable = Buildable.Block;
-    public int Money = 0;
     public TextMeshProUGUI MoneyText;
     public BuildablePrefabs BuildablePrefabs;
     public Prices Prices;
+    public int Money { get; private set; } = 0;
+    Buildable SelectedBuildable = Buildable.Block;
 
     public void SetSelectedBuildable(string buildable)
     {
@@ -55,7 +55,13 @@ public class ShopController : MonoBehaviour
         return false;
     }
 
-    public void UpdateMoneyText()
+    public void AddMoney(int money)
+    {
+        Money += money;
+        UpdateMoneyText();
+    }
+
+    void UpdateMoneyText()
     {
         MoneyText.text = "$" + Money;
     }

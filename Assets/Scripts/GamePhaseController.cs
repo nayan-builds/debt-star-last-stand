@@ -128,12 +128,10 @@ public class GamePhaseController : MonoBehaviour
 
     public void AddMoneyForWave(int wave)
     {
-        //5% interest
-        Shop.Money = Mathf.CeilToInt(100 + wave * wave * 50 + Shop.Money * 0.05f);
-        Shop.UpdateMoneyText();
+        //20% interest
+        int money = Mathf.CeilToInt(100 + wave * wave * 50 + Shop.Money * 0.2f);
+        Shop.AddMoney(money);
     }
-
-
 }
 
 
