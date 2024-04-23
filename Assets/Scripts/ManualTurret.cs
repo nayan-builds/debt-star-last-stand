@@ -23,8 +23,6 @@ public class ManualTurret : Shooting
         gun = transform.GetChild(0);
         cam = GetComponentInChildren<Camera>();
         normalFieldOfView = cam.fieldOfView;
-        Debug.Log(transform.rotation.eulerAngles.x);
-        Debug.Log(transform.rotation.eulerAngles.y);
     }
 
     // Update is called once per frame

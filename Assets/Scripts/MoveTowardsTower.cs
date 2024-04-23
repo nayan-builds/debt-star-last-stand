@@ -20,7 +20,6 @@ public class MoveTowardsTower : MonoBehaviour
 
     void OnTriggerEnter(Collider co)
     {
-        Debug.Log(co.name);
         if (co.name == "Enemy Range")
         {
             gameObject.GetComponent<EnemyShooting>().enabled = true;
