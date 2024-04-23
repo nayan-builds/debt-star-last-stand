@@ -14,13 +14,17 @@ public class ShopController : MonoBehaviour
     public void SetSelectedBuildable(string buildable)
     {
         //OnClick handlers don't like enums
-        if (buildable == "Block")
+        switch (buildable)
         {
-            SelectedBuildable = Buildable.Block;
-        }
-        else if (buildable == "Turret")
-        {
-            SelectedBuildable = Buildable.Turret;
+            case "Block":
+                SelectedBuildable = Buildable.Block;
+                break;
+            case "Turret":
+                SelectedBuildable = Buildable.Turret;
+                break;
+            default:
+                Debug.LogError("Invalid buildable: " + buildable);
+                break;
         }
     }
 

@@ -1217,8 +1217,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3cd0c5e2adace14798bf2fe1aed1d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectedBuildable: 0
-  Money: 0
   MoneyText: {fileID: 451540515}
   BuildablePrefabs:
     Block: {fileID: 2018060195341465877, guid: c4d7cc2c430ec1442bf42c27478018a2, type: 3}
